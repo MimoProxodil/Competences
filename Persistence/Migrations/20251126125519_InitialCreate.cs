@@ -14,9 +14,9 @@ namespace Persistence.Migrations
                 name: "CompetenceTypes",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    ShortName = table.Column<string>(type: "text", nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    ShortName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
