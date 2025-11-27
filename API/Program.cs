@@ -12,10 +12,19 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
     //opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors();
+
 var app = builder.Build();
+//здесь заканчивается область настройки сервера
 
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
+
+app.UseCors(x =>
+{
+    x.AllowAnyHeader().AllowAnyMethod()
+    .WithOrigins("http://localhost:3000","https://localhost:3000");
+});
 
 app.MapControllers();
 
