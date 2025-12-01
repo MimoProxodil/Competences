@@ -1,3 +1,5 @@
+using Application.GetCompetenceTypes.Queries;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 });
 
 builder.Services.AddCors();
+builder.Services.AddMediatR(x => 
+    x.RegisterServicesFromAssemblyContaining<GetCompetenceTypeList.Hadler>());
 
 var app = builder.Build();
 //здесь заканчивается область настройки сервера
