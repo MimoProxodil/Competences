@@ -1,4 +1,5 @@
 using System;
+using Application.CompetenceTypes.Commands;
 using Application.CompetenceTypes.Queries;
 using Application.GetCompetenceTypes.Queries;
 using Domain;
@@ -7,12 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-public class CompetenceTypesController(IMediator mediator) : BaseApiController
+public class CompetenceTypesController : BaseApiController
 {
     [HttpGet]
     public async Task<ActionResult<List<CompetenceType>>> GetCompetenceTypes()
     {
-        return await mediator.Send(new GetCompetenceTypeList.Query());
+        return await Mediator.Send(new GetCompetenceTypeList.Query());
     }
 
     [HttpGet("{id}")]
@@ -21,6 +22,12 @@ public class CompetenceTypesController(IMediator mediator) : BaseApiController
         // var type = await context.CompetenceTypes.FindAsync(id);
         // if(type == null) return NotFound();
         // return Ok(type);
-        return await mediator.Send(new GetCompetenceTypeDetails.Query{Id = id});
+        return await Mediator.Send(new GetCompetenceTypeDetails.Query{Id = id});
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<string>> CreateCompetenceType(CompetenceType competenceType)
+    {
+        return await Mediator.Send(new CreateCompetenceType.Command{CompetenceType = competenceType});
     }
 }
