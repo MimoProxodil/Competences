@@ -30,4 +30,12 @@ public class CompetenceTypesController : BaseApiController
     {
         return await Mediator.Send(new CreateCompetenceType.Command{CompetenceType = competenceType});
     }
+
+    [HttpPut]
+    public async Task<ActionResult> EditCompetenceType(CompetenceType competenceType)
+    {
+        await Mediator.Send(new EditCompetenceType.Command{CompetenceType = competenceType});
+        return NoContent();
+    }
+
 }
