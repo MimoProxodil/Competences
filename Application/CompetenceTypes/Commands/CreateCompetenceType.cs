@@ -18,7 +18,7 @@ namespace Application.CompetenceTypes.Commands
         {
             public async Task<string> Handle(Command request, CancellationToken cancellationToken)
             {
-                context.CompetenceTypes.Add(request.CompetenceType);
+                await context.CompetenceTypes.AddAsync(request.CompetenceType, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
                 return request.CompetenceType.Id;
             }

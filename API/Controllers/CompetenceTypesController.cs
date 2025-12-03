@@ -38,4 +38,11 @@ public class CompetenceTypesController : BaseApiController
         return NoContent();
     }
 
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteCompetenceType(string id)
+    {
+        await Mediator.Send(new DeleteCompetenceType.Command{Id = id});
+        return Ok();
+    }
+
 }
