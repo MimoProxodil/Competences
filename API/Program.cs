@@ -1,3 +1,4 @@
+using Application.Core;
 using Application.GetCompetenceTypes.Queries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddCors();
 builder.Services.AddMediatR(x => 
     x.RegisterServicesFromAssemblyContaining<GetCompetenceTypeList.Hadler>());
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);    
 
 var app = builder.Build();
 //здесь заканчивается область настройки сервера

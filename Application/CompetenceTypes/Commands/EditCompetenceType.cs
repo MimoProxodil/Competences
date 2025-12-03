@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Domain;
 using MediatR;
 using Persistence;
@@ -15,7 +16,7 @@ namespace Application.CompetenceTypes.Commands
             public required CompetenceType CompetenceType{ get; set; }
         }
 
-        public class Handler(AppDbContext context) : IRequestHandler<Command>
+        public class Handler(AppDbContext context, IMapper mapper) : IRequestHandler<Command>
         {
             public async Task Handle(Command request, CancellationToken cancellationToken)
             {
@@ -23,8 +24,7 @@ namespace Application.CompetenceTypes.Commands
                     .FindAsync([request.CompetenceType.Id], cancellationToken) 
                         ?? throw new Exception("Competence Type not found");
 
-                competenceType.Name = request.CompetenceType.Name;
-                competenceType.ShortName = request.CompetenceType.ShortName;
+                mapper.Map(request.CompetenceType, competenceType);
                 await context.SaveChangesAsync(cancellationToken);
             }
         }
