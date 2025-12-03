@@ -1,9 +1,10 @@
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react"
+import NavBar from "./NavBar";
+import CompetenceTypeDashboard from "../../features/competenceTypes/CompetenceTypeDashboard";
 
 function App() {
-  const title = 'Сервис компетенций'
   const [competenceTypes, setCompetenceTypes] = useState<CompetenceType[]>([]);
 
   useEffect(() =>{
@@ -14,15 +15,13 @@ function App() {
 
   return (
     <>
-        <Typography variant='h3'>{title}</Typography>
-        <List>
-          {competenceTypes.map((compType)=>(
-            <ListItem key={compType.id}>
-              <ListItemText>{compType.name}</ListItemText> 
-            </ListItem>
-          ))}
+      <CssBaseline />
+      <NavBar />
+      <Container maxWidth='xl' sx={{mt:3}}>
+        <CompetenceTypeDashboard competenceTypes ={competenceTypes} />
+      </Container>
 
-        </List>
+
     </>
 
   )
