@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 API/appsettings.json
 API/competences.bd-shm
 .gitignore
+API/competences.bd

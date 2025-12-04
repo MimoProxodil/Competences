@@ -1,8 +1,8 @@
-import { Container, CssBaseline } from "@mui/material";
+import { Box, Container, CssBaseline } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react"
 import NavBar from "./NavBar";
-import CompetenceTypeDashboard from "../../features/competenceTypes/CompetenceTypeDashboard";
+import CompetenceTypeDashboard from "../../features/competenceTypes/dashboard/CompetenceTypeDashboard";
 
 function App() {
   const [competenceTypes, setCompetenceTypes] = useState<CompetenceType[]>([]);
@@ -14,7 +14,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <Box sx={{bgcolor:'#eeeeee'}}>
       <CssBaseline />
       <NavBar />
       <Container maxWidth='xl' sx={{mt:3}}>
@@ -22,7 +22,7 @@ function App() {
       </Container>
 
 
-    </>
+    </Box>
 
   )
 }
